@@ -41,18 +41,7 @@ if ($pg) {
 
             break;
 
-        case 'produtos-item':
-
-            $id = $_GET['id'];
-
-            $resultDados = new Conexao();
-            $dados = $resultDados->selecionaDados('SELECT * FROM produtos WHERE id = ' . $id);
-
-            include_once 'painel/paginas/includes/header.php';
-            include_once 'painel/paginas/includes/menus.php';
-            include_once 'painel/paginas/produtos-item.php';
-            include_once 'painel/paginas/includes/footer.php';
-            break;
+        
 
         case 'produtos-editar':
             include_once 'painel/paginas/includes/header.php';
@@ -108,11 +97,10 @@ if ($pg) {
         case 'produtos-excluir':
             
             $parametros = array(
-                ':id'=>$_GET['id'],
+                ':id' => $_GET['id'],
             );
             $resultDados = new Conecxao();
-            $resultDados->intervencaoNoBanco(''
-                    . 'DELETE FROM produtos WHERE id = :id', $parametros);
+            $resultDados->intervencaoNoBanco('DELETE FROM produtos WHERE id = :id', $parametros);
             header('Location: ?pg=produtos');
             
             break;
@@ -126,6 +114,68 @@ if ($pg) {
             include_once 'painel/paginas/includes/menus.php';
             include_once 'painel/paginas/servicos.php';
             include_once 'painel/paginas/includes/footer.php';
+            break;
+        
+        case 'servicos-editar':
+            include_once 'painel/paginas/includes/header.php';
+            include_once 'painel/paginas/includes/menus.php';
+
+            if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+                //Função para atualização do Produto
+                //Pegando as variáveis via POST
+
+                $id = $_POST['id'];
+                $nome = $_POST['nome'];
+                $tipo = $_POST['tipo'];
+                $valor = $_POST['valor'];
+
+                //Tratando os dados enviados
+                $parametros = array(
+                    ':id' => $id,
+                    ':nome' => $nome,
+                    ':tipo' => $tipo,
+                    ':valor' => $valor
+                );
+
+                //Fazendo a atualização no banco
+                $atualizarServicos = new Conecxao;
+
+                $atualizarServicos->intervencaoNoBanco(''
+                        . 'UPDATE servicos SET '
+                        . 'nome = :nome, '
+                        . 'tipo = :tipo, '
+                        . 'valor = :valor '
+                        . 'WHERE id = :id', $parametros);
+
+                include_once 'painel/paginas/servicos.php';
+            } else {
+                //mostrar os dados do servicos
+                $idServicosEditar = isset($_GET['id']);
+
+                if ($idServicosEditar) {
+
+                    $resultDados = new Conecxao();
+                    $dados = $resultDados->selecionaDados('SELECT * FROM '
+                            . 'servicos WHERE id = ' . $_GET['id']);
+
+                    include_once 'painel/paginas/servicos-editar.php';
+                } else {
+                    echo 'variável não definida';
+                }
+            }
+
+            include_once 'painel/paginas/includes/footer.php';
+            break;
+
+        case 'servicos-excluir':
+            
+            $parametros = array(
+                ':id' => $_GET['id'],
+            );
+            $resultDados = new Conecxao();
+            $resultDados->intervencaoNoBanco('DELETE FROM servicos WHERE id = :id', $parametros);
+            header('Location: ?pg=servicos');
+            
             break;
 
         case 'servicos-visualizar':
@@ -152,6 +202,68 @@ if ($pg) {
             include_once 'painel/paginas/includes/menus.php';
             include_once 'painel/paginas/contato.php';
             include_once 'painel/paginas/includes/footer.php';
+            break;
+        
+        case 'contato-editar':
+            include_once 'painel/paginas/includes/header.php';
+            include_once 'painel/paginas/includes/menus.php';
+
+            if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+                //Função para atualização do Produto
+                //Pegando as variáveis via POST
+
+                $id = $_POST['id'];
+                $nome = $_POST['nome'];
+                $tipo = $_POST['tipo'];
+                $valor = $_POST['valor'];
+
+                //Tratando os dados enviados
+                $parametros = array(
+                    ':id' => $id,
+                    ':nome' => $nome,
+                    ':tipo' => $tipo,
+                    ':valor' => $valor
+                );
+
+                //Fazendo a atualização no banco
+                $atualizarContato = new Conecxao;
+
+                $atualizarContato->intervencaoNoBanco(''
+                        . 'UPDATE produtos SET '
+                        . 'nome = :nome, '
+                        . 'tipo = :tipo, '
+                        . 'valor = :valor '
+                        . 'WHERE id = :id', $parametros);
+
+                include_once 'painel/paginas/servicos.php';
+            } else {
+                //mostrar os dados do produto
+                $idContatoEditar = isset($_GET['id']);
+
+                if ($idContatoEditar) {
+
+                    $resultDados = new Conecxao();
+                    $dados = $resultDados->selecionaDados('SELECT * FROM '
+                            . 'contato WHERE id = ' . $_GET['id']);
+
+                    include_once 'painel/paginas/contato-editar.php';
+                } else {
+                    echo 'variável não definida';
+                }
+            }
+
+            include_once 'painel/paginas/includes/footer.php';
+            break;
+
+        case 'contato-excluir':
+            
+            $parametros = array(
+                ':id' => $_GET['id'],
+            );
+            $resultDados = new Conecxao();
+            $resultDados->intervencaoNoBanco('DELETE FROM contato WHERE id = :id', $parametros);
+            header('Location: ?pg=contato');
+            
             break;
 
         case 'contato-visualizar':
