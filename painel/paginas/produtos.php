@@ -31,6 +31,13 @@ $dados = $resultDados->selecionaDados('SELECT * FROM produtos');
                         <div class="col-12">
 
                             <div class="card">
+                                <div class="card-header">
+                                    <h3 class="card-title">
+                                        <a href="?pg=produtos-inserir" class="btn btn-success btn-lg">
+                                            <span class="fa fa-plus"></span> Novo produto
+                                        </a>
+                                    </h3>
+                                </div>
 
                                 <!-- /.card-header -->
                                 <div class="card-body">

@@ -41,7 +41,7 @@ if ($pg) {
 
             break;
 
-        
+
 
         case 'produtos-editar':
             include_once 'painel/paginas/includes/header.php';
@@ -95,16 +95,44 @@ if ($pg) {
             break;
 
         case 'produtos-excluir':
-            
+
             $parametros = array(
                 ':id' => $_GET['id'],
             );
             $resultDados = new Conecxao();
             $resultDados->intervencaoNoBanco('DELETE FROM produtos WHERE id = :id', $parametros);
             header('Location: ?pg=produtos');
-            
+
             break;
-        
+
+        case 'produtos-inserir':
+            include_once 'painel/paginas/includes/header.php';
+            include_once 'painel/paginas/includes/menus.php';
+
+            if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+
+                $nome = $_POST['nome'];
+                $tipo = $_POST['tipo'];
+                $valor = $_POST['valor'];
+
+                $parametros = array(''
+                    . ':nome' => $nome,
+                    ':tipo' => $tipo,
+                    ':valor' => $valor
+                );
+                $resultDados = new Conecxao();
+                $resultDados->intervencaoNoBanco('INSERT INTO '
+                        . 'produtos (nome, tipo, valor) '
+                        . 'VALUES (:nome, :tipo, :valor)', $parametros);
+
+                include_once 'painel/paginas/produtos.php';
+            } else {
+                include_once    'painel/paginas/produtos-inserir.php';
+            }
+
+            include_once 'painel/paginas/includes/footer.php';
+            break;
+
         case 'servicos':
 
             $resultDados = new conecxao ();
@@ -115,7 +143,7 @@ if ($pg) {
             include_once 'painel/paginas/servicos.php';
             include_once 'painel/paginas/includes/footer.php';
             break;
-        
+
         case 'servicos-editar':
             include_once 'painel/paginas/includes/header.php';
             include_once 'painel/paginas/includes/menus.php';
@@ -168,14 +196,14 @@ if ($pg) {
             break;
 
         case 'servicos-excluir':
-            
+
             $parametros = array(
                 ':id' => $_GET['id'],
             );
             $resultDados = new Conecxao();
             $resultDados->intervencaoNoBanco('DELETE FROM servicos WHERE id = :id', $parametros);
             header('Location: ?pg=servicos');
-            
+
             break;
 
         case 'servicos-visualizar':
@@ -203,7 +231,7 @@ if ($pg) {
             include_once 'painel/paginas/contato.php';
             include_once 'painel/paginas/includes/footer.php';
             break;
-        
+
         case 'contato-editar':
             include_once 'painel/paginas/includes/header.php';
             include_once 'painel/paginas/includes/menus.php';
@@ -256,14 +284,14 @@ if ($pg) {
             break;
 
         case 'contato-excluir':
-            
+
             $parametros = array(
                 ':id' => $_GET['id'],
             );
             $resultDados = new Conecxao();
             $resultDados->intervencaoNoBanco('DELETE FROM contato WHERE id = :id', $parametros);
             header('Location: ?pg=contato');
-            
+
             break;
 
         case 'contato-visualizar':
