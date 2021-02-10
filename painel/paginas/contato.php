@@ -28,7 +28,7 @@
                 <div class="col-12">
 
                     <div class="card">
-                        
+
                         <!-- /.card-header -->
                         <div class="card-body">
                             <table id="tabela-produtos" class="table table-bordered table-striped table-hover">
@@ -37,7 +37,7 @@
                                         <th>Código</th>
                                         <th>Nome</th>
                                         <th>Email</th>
-                                        <th>Numero</th>
+                                        <th>Mensagem</th>
                                         <th>Ações</th>
                                     </tr>
                                 </thead>
@@ -51,7 +51,7 @@
                                             <td><?php echo $dado['id']; ?> </td>
                                             <td><?php echo $dado['nome']; ?></td>
                                             <td><?php echo $dado['email']; ?></td>
-                                            <td><?php echo $dado['mensagem']; ?></td>
+                                            <td><?php echo $dado['msg']; ?></td>
                                             <td>
                                                 <a href="?pg=contato-visualizar&id=<?php echo $dado['id']; ?>" class="btn btn-outline-success"><span class="fa fa-eye"></span></a>
                                                 <!--<a href="?pg=contato-editar&id=<?php echo $dado['id']; ?>" class="btn btn-outline-warning"><span class="fa fa-edit"></span></a>-->
