@@ -32,6 +32,15 @@
                         <!-- /.card-header -->
                         <div class="card-body">
                             <table id="tabela-produtos" class="table table-bordered table-striped table-hover">
+                                <!-- Main content -->
+                                <section class="content">
+                                    <div class="container-fluid">
+
+                                      
+                                        
+                                    </div><!-- /.container-fluid -->
+                                </section>
+                                <!-- /.content -->
                                 <thead>
                                     <tr>
                                         <th>Código</th>

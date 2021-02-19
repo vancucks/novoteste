@@ -31,8 +31,7 @@
                                         </div>
                                         <div class="form-group">
                                             <label  for="valor"> Mensagem</label>
-                                            <textarea type="text" name="msg" value="" class="form-control" id="msg"></textarea>
-
+                                            <textarea type="text"<textarea name="msg" value="" class="form-control" id="msg"></textarea>
                                         </div>
                                         <input type="hidden" value="" name="id">
                                     </div>
